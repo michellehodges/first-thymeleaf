@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New Student</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<!--Update new_student.html to:-->
+
+<!--Add inputs for the student's first name and last name fields-->
+<!--Use Thymeleaf to access the grades that were added to the Model in the controller to show a pulldown list-->
+<!--Reminder: You must close all HTML tags or else Thymeleaf will complain. For example most <meta> tags are note closed -->
+<!--and the browser will not complain but Thymeleaf won't work.-->
+
+<!--Note: Thymeleaf files are processed on the server. If you make changes to the file, you have to restart the server to -->
+<!--see those changes. It does make development slow (slower than a dynamic language like Javascript, Ruby, Python). -->
+<!--There are ways to speed this up but that's beyond the scope of this project.-->
+
+
+<h1>Create a New Student</h1>
+<!-- Add a form to post to /create_student url.
+     Add an inputs for first name, last name and grade.
+     Use thymeleaf to access the grades that were added to the model in the
+      controller to show in the <select> pulldown list -->
+   <form action="#" th:action="@{/create_student}" th:object="${student}" method="post">
+    <table>
+        <tr>
+            <td>First Name:</td>
+            <td><input type="text" th:field="*{firstName}" /></td>
+        </tr>
+        <tr>
+            <td>Last Name:</td>
+            <td><input type="text" th:field="*{lastName}" /></td>
+        </tr>
+        <tr>
+            <td>Grade:</td>
+            <td>
+                <select name="grade">
+                    <option th:each="grade : ${grades}"
+                            th:value="${grade}"
+                            th:text="${grade}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <button>Submit</button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
+
